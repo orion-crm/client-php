@@ -53,4 +53,17 @@ class Result
     {
         return json_decode($this->response->getBody(), true);
     }
+
+    /**
+     * @return int|string
+     */
+    public function getId()
+    {
+        $jsonBody = $this->json();
+        if (isset($jsonBody['id'])) {
+            return $jsonBody['id'];
+        }
+
+        throw new \LogicException('Id is null or missing');
+    }
 }

@@ -26,6 +26,30 @@ class Lead extends AbstractApiEntity
      * @var float
      */
     protected $price;
+    /**
+     * @var int|string
+     */
+    protected $contactId;
+    /**
+     * @var int|string
+     */
+    protected $companyId;
+    /**
+     * @var int|string
+     */
+    protected $managerId;
+    /**
+     * @var int|string
+     */
+    protected $stepId;
+    /**
+     * @var int|string
+     */
+    protected $orderId;
+    /**
+     * @var string
+     */
+    protected $source;
 
     /**
      * @return string
@@ -65,5 +89,101 @@ class Lead extends AbstractApiEntity
     public function getEndpoint()
     {
         return 'crm/lead';
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getContactId()
+    {
+        return $this->contactId;
+    }
+
+    /**
+     * @param int|string $contactId
+     */
+    public function setContactId($contactId)
+    {
+        $this->contactId = $contactId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource(): string
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param string $source
+     */
+    public function setSource(string $source)
+    {
+        $this->source = $source;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getManagerId()
+    {
+        return $this->managerId;
+    }
+
+    /**
+     * @param int|string $managerId
+     */
+    public function setManagerId($managerId)
+    {
+        $this->managerId = $managerId;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getCompanyId()
+    {
+        return $this->companyId;
+    }
+
+    /**
+     * @param int|string $companyId
+     */
+    public function setCompanyId($companyId)
+    {
+        $this->companyId = $companyId;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getStepId()
+    {
+        return $this->stepId;
+    }
+
+    /**
+     * @param int|string $stepId
+     */
+    public function setStepId($stepId)
+    {
+        $this->stepId = $stepId;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * @param int|string $orderId
+     */
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
     }
 }

@@ -24,9 +24,14 @@ abstract class AbstractApiEntity implements EntityInterface
         $array = [];
         foreach ($properties as $property) {
             $name = $property->getName();
-            $array[$name] = $this->{$name};
+            $array[$this->toSnakeCase($name)] = $this->{$name};
         }
 
         return $array;
+    }
+
+    private function toSnakeCase($name)
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $name));
     }
 }
