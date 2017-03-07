@@ -1,5 +1,5 @@
 {
-  "name": "orion/client-php",
+  "name": "orion-crm/client-php",
   "license": "MIT",
   "require": {
     "php": ">=5.5",
