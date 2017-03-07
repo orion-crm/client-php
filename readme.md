@@ -34,9 +34,9 @@ $contact->setPhone('+78332207107');
 ### Создание компании:
 
 ```php
-$contact = new \Orion\Component\Client\Crm\Company();
-$contact->setName('Hello api!');
-$contact->setPhone('+78332207107');
+$company = new \Orion\Component\Client\Crm\Company();
+$company->setName('Hello api!');
+$company->setPhone('+78332207107');
 ```
 
 Если компания была найдена в базе данных по номеру телефона или email адресу, то новая создаваться не 
@@ -65,6 +65,3 @@ $task->setType(1);
 $task->setDeadlineAt(new \DateTime);
 // $task->setDeadlineAt('2017-10-10 10:10:10');
 ```
-
-Если компания была найдена в базе данных по номеру телефона или email адресу, то новая создаваться не
-будет и сохранение будет проигнорировано.
