@@ -50,6 +50,10 @@ class Lead extends AbstractApiEntity
      * @var string
      */
     protected $source;
+    /**
+     * @var string
+     */
+    protected $description;
 
     /**
      * @return string
@@ -110,7 +114,7 @@ class Lead extends AbstractApiEntity
     /**
      * @return string
      */
-    public function getSource(): string
+    public function getSource()
     {
         return $this->source;
     }
@@ -185,5 +189,21 @@ class Lead extends AbstractApiEntity
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
     }
 }
