@@ -8,6 +8,7 @@
 
 namespace Orion\Component\Client;
 
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7\Request;
 
@@ -80,6 +81,8 @@ class Client
                 'body' => json_encode($entity->toArray())
             ]);
         } catch (ServerException $e) {
+            $response = $e->getResponse();
+        } catch (RequestException $e) {
             $response = $e->getResponse();
         }
 

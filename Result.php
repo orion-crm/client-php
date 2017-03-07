@@ -47,6 +47,14 @@ class Result
     }
 
     /**
+     * @return ResponseInterface
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
      * @return array
      */
     public function json()
