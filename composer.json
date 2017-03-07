@@ -1,5 +1,6 @@
 {
-  "name": "orion/client",
+  "name": "orion/client-php",
+  "license": "MIT",
   "require": {
     "php": ">=5.5",
     "guzzlehttp/guzzle": "^5.3.1|^6.2.1"
