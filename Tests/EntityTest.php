@@ -10,7 +10,9 @@
 
 namespace Orion\Component\Client\Tests;
 
-class EntityTest extends \Framework_TestCaseTest
+use PHPUnit\Framework\TestCase;
+
+class EntityTest extends TestCase
 {
     public function testToArray()
     {
