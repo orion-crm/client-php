@@ -4,6 +4,8 @@
  * (c) Studio107 <mail@studio107.ru> http://studio107.ru
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
+ *
+ * Author: Maxim Falaleev <max@studio107.ru>
  */
 
 namespace Orion\Component\Client\Crm;
@@ -122,7 +124,7 @@ class Lead extends AbstractApiEntity
     /**
      * @param string $source
      */
-    public function setSource(string $source)
+    public function setSource($source)
     {
         $this->source = $source;
     }
@@ -202,7 +204,7 @@ class Lead extends AbstractApiEntity
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }

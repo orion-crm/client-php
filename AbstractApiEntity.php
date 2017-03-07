@@ -24,7 +24,11 @@ abstract class AbstractApiEntity implements EntityInterface
         $array = [];
         foreach ($properties as $property) {
             $name = $property->getName();
-            $array[$this->toSnakeCase($name)] = $this->{$name};
+            $value = $this->{$name};
+            if ($value instanceof \DateTime) {
+                $value = $value->format('Y-d-m h:m:s');
+            }
+            $array[$this->toSnakeCase($name)] = $value;
         }
 
         return $array;
