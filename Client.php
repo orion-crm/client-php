@@ -8,8 +8,10 @@
 
 namespace Orion\Component\Client;
 
+use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Psr7\Response;
 
 class Client
 {
@@ -88,6 +90,10 @@ class Client
             $response = $e->getResponse();
         } catch (RequestException $e) {
             $response = $e->getResponse();
+        }
+
+        if (false === isset($response)) {
+            $response = new Response(700);
         }
 
         return new Result($response);
