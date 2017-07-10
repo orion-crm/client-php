@@ -52,6 +52,10 @@ class Lead extends AbstractApiEntity
      * @var int|string
      */
     protected $pipelineStepId;
+    /**
+     * @var string
+     */
+    protected $source;
 
     /**
      * @return string
@@ -219,5 +223,21 @@ class Lead extends AbstractApiEntity
     public function setPipelineStepId($pipelineStepId)
     {
         $this->pipelineStepId = $pipelineStepId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param string $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
     }
 }

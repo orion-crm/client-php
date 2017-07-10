@@ -18,12 +18,16 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([
             'type' => 'test',
+            'name' => 'Тест',
+            'source' => 'phpunit',
             'data' => ['foo' => 'bar']
         ]);
         $this->assertSame('request', $request->getEndpoint());
         $this->assertSame([
             'type' => 'test',
             'data' => '{"foo":"bar"}',
+            'name' => 'Тест',
+            'source' => 'phpunit',
         ], $request->toArray());
     }
 }

@@ -31,6 +31,7 @@ class LeadTest extends \PHPUnit_Framework_TestCase
             'client_id' => null,
             'requisite_id' => null,
             'pipeline_step_id' => null,
+            'source' => null,
         ], $lead->toArray());
     }
 }
