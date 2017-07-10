@@ -32,9 +32,8 @@ class Result
      */
     public function isSuccess()
     {
-        $success = in_array($this->response->getStatusCode(), [200, 201]);
-        $jsonBody = $this->json();
-        return $success && isset($jsonBody['status']) && $jsonBody['status'];
+        $status = $this->response->getStatusCode();
+        return $status >= 200 && $status < 300;
     }
 
     /**

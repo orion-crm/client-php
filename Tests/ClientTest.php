@@ -13,6 +13,7 @@ namespace Orion\Component\Client\Tests;
 use GuzzleHttp\Psr7\Response;
 use Orion\Component\Client\Client;
 use Orion\Component\Client\Lead;
+use Orion\Component\Client\Result;
 
 class DummyResponse extends Response
 {
@@ -29,11 +30,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client
             ->method('send')
-            ->willReturn(new DummyResponse());
+            ->willReturn(new Result(new DummyResponse()));
 
         /** @var $client Client */
-        $response = $client->send(new Lead(['name' => 'test']));
-        $this->assertInstanceOf(DummyResponse::class, $response);
+        $result = $client->send(new Lead(['name' => 'test']));
+        $this->assertInstanceOf(Result::class, $result);
     }
 
     public function testUrl()
