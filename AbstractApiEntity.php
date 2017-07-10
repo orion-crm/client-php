@@ -16,14 +16,17 @@ abstract class AbstractApiEntity implements EntityInterface
     public function __construct(array $data = [])
     {
         foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $method = sprintf("set%s", ucfirst($key));
-                call_user_func(
-                    [$this, $method],
-                    $value
-                );
+            $property = $this->toCamelCase($key);
+            if (property_exists($this, $property)) {
+                $method = sprintf("set%s", ucfirst($property));
+                call_user_func([$this, $method], $value);
             }
         }
+    }
+
+    protected function toCamelCase($value)
+    {
+        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $value))));
     }
 
     /**

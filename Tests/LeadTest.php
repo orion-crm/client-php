@@ -17,7 +17,8 @@ class LeadTest extends \PHPUnit_Framework_TestCase
     public function testLead()
     {
         $lead = new Lead([
-            'name' => 'test'
+            'name' => 'test',
+            'request_id' => 11
         ]);
         $this->assertSame('lead', $lead->getEndpoint());
         $this->assertSame([
@@ -32,6 +33,7 @@ class LeadTest extends \PHPUnit_Framework_TestCase
             'requisite_id' => null,
             'pipeline_step_id' => null,
             'source' => null,
+            'request_id' => 11,
         ], $lead->toArray());
     }
 }
