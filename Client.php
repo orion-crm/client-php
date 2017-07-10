@@ -10,14 +10,13 @@ namespace Orion\Component\Client;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Psr7\Request;
 
 class Client
 {
     /**
      * @var string
      */
-    protected $host = 'https://orion-crm.ru';
+    protected $host = 'https://api.orion-crm.ru';
     /**
      * @var string
      */
@@ -29,7 +28,7 @@ class Client
     /**
      * @var string
      */
-    protected $headerKey = 'X-AUTH-TOKEN';
+    protected $headerKey = 'Authorization';
 
     /**
      * Client constructor.
@@ -48,12 +47,12 @@ class Client
     /**
      * @return \GuzzleHttp\Client
      */
-    protected function getClient()
+    public function getGuzzleClient()
     {
         return new \GuzzleHttp\Client([
             'headers' => [
                 'content-type' => 'application/json',
-                $this->headerKey => $this->token,
+                $this->headerKey => sprintf("Bearer %s", $this->token),
             ]
         ]);
     }
@@ -62,9 +61,14 @@ class Client
      * @param EntityInterface $entity
      * @return string
      */
-    protected function getAbsoluteUrl(EntityInterface $entity)
+    public function getAbsoluteUrl(EntityInterface $entity)
     {
-        return sprintf("%s/api/%s/%s", $this->host, $this->version, $entity->getEndpoint());
+        return sprintf(
+            "%s/%s/%s",
+            rtrim($this->host, '/'),
+            trim($this->version, '/'),
+            ltrim($entity->getEndpoint(), '/')
+        );
     }
 
     /**
@@ -74,7 +78,7 @@ class Client
      */
     public function send(EntityInterface $entity)
     {
-        $client = $this->getClient();
+        $client = $this->getGuzzleClient();
 
         try {
             $response = $client->post($this->getAbsoluteUrl($entity), [

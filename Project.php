@@ -8,9 +8,7 @@
  * Author: Maxim Falaleev <max@studio107.ru>
  */
 
-namespace Orion\Component\Client\Project;
-
-use Orion\Component\Client\AbstractApiEntity;
+namespace Orion\Component\Client;
 
 class Project extends AbstractApiEntity
 {
@@ -32,7 +30,7 @@ class Project extends AbstractApiEntity
      */
     public function getEndpoint()
     {
-        return 'project/project';
+        return 'project';
     }
 
     /**

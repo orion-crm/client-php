@@ -13,6 +13,19 @@ use ReflectionProperty;
 
 abstract class AbstractApiEntity implements EntityInterface
 {
+    public function __construct(array $data = [])
+    {
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $method = sprintf("set%s", ucfirst($key));
+                call_user_func(
+                    [$this, $method],
+                    $value
+                );
+            }
+        }
+    }
+
     /**
      * @return array
      */

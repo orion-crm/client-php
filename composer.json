@@ -1,34 +1,34 @@
 {
-  "name": "orion-crm/client-php",
-  "license": "MIT",
-  "require": {
-    "php": ">=5.5",
-    "guzzlehttp/guzzle": "^5.3.1|^6.2.1"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~5.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Orion\\Component\\Client\\": ""
+    "name": "orion-crm/client-php",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "^5.3.1|^6.2.1"
     },
-    "exclude-from-classmap": [
-      "/Tests/"
-    ]
-  },
-  "archive": {
-    "exclude": [
-      "./Tests"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Orion\\Component\\Client\\Tests\\": "Tests/"
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orion\\Component\\Client\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "archive": {
+        "exclude": [
+            "./Tests"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Orion\\Component\\Client\\Tests\\": "Tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
     }
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.1-dev"
-    }
-  }
 }
