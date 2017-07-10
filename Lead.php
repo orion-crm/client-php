@@ -56,6 +56,10 @@ class Lead extends AbstractApiEntity
      * @var string
      */
     protected $source;
+    /**
+     * @var int|string
+     */
+    protected $requestId;
 
     /**
      * @return string
@@ -239,5 +243,21 @@ class Lead extends AbstractApiEntity
     public function setSource($source)
     {
         $this->source = $source;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getRequestId()
+    {
+        return $this->requestId;
+    }
+
+    /**
+     * @param int|string $requestId
+     */
+    public function setRequestId($requestId)
+    {
+        $this->requestId = $requestId;
     }
 }
