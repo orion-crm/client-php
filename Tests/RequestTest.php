@@ -17,17 +17,17 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testLead()
     {
         $request = new Request([
-            'type' => 'test',
+            'request_template_id' => 1,
             'name' => 'Тест',
             'source' => 'phpunit',
             'data' => ['foo' => 'bar']
         ]);
         $this->assertSame('request', $request->getEndpoint());
         $this->assertSame([
-            'type' => 'test',
             'data' => '{"foo":"bar"}',
             'name' => 'Тест',
             'source' => 'phpunit',
+            'request_template_id' => 1,
         ], $request->toArray());
     }
 }

@@ -13,10 +13,6 @@ namespace Orion\Component\Client;
 class Request extends AbstractApiEntity
 {
     /**
-     * @var string
-     */
-    protected $type;
-    /**
      * @var string|array
      */
     protected $data;
@@ -28,6 +24,10 @@ class Request extends AbstractApiEntity
      * @var string
      */
     protected $source;
+    /**
+     * @var string|int
+     */
+    protected $requestTemplateId;
 
     /**
      * @return string
@@ -35,22 +35,6 @@ class Request extends AbstractApiEntity
     public function getEndpoint()
     {
         return 'request';
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
     }
 
     /**
@@ -104,5 +88,21 @@ class Request extends AbstractApiEntity
     public function setSource($source)
     {
         $this->source = $source;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getRequestTemplateId()
+    {
+        return $this->requestTemplateId;
+    }
+
+    /**
+     * @param int|string $requestTemplateId
+     */
+    public function setRequestTemplateId($requestTemplateId)
+    {
+        $this->requestTemplateId = $requestTemplateId;
     }
 }
