@@ -11,7 +11,7 @@
 namespace Orion\Component\Client\Tests;
 
 use GuzzleHttp\Psr7\Response;
-use Orion\Component\Client\Client;
+use Orion\Component\Client\ApiClient;
 use Orion\Component\Client\Lead;
 use Orion\Component\Client\Result;
 
@@ -20,38 +20,38 @@ class DummyResponse extends Response
 
 }
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ApiClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testClient()
     {
         $client = $this
-            ->getMockBuilder(Client::class)
+            ->getMockBuilder(ApiClient::class)
             ->getMock();
 
         $client
             ->method('send')
             ->willReturn(new Result(new DummyResponse()));
 
-        /** @var $client Client */
+        /** @var $client ApiClient */
         $result = $client->send(new Lead(['name' => 'test']));
         $this->assertInstanceOf(Result::class, $result);
     }
 
     public function testUrl()
     {
-        $client = new Client();
+        $client = new ApiClient();
         $this->assertSame('https://api.orion-crm.ru/v1/lead', $client->getAbsoluteUrl(new Lead));
 
-        $client = new Client(['version' => 'v2']);
+        $client = new ApiClient(['version' => 'v2']);
         $this->assertSame('https://api.orion-crm.ru/v2/lead', $client->getAbsoluteUrl(new Lead));
 
-        $client = new Client(['version' => 'v2', 'host' => 'http://localhost:8000//']);
+        $client = new ApiClient(['version' => 'v2', 'host' => 'http://localhost:8000//']);
         $this->assertSame('http://localhost:8000/v2/lead', $client->getAbsoluteUrl(new Lead));
     }
 
     public function testAuthorization()
     {
-        $client = new Client([
+        $client = new ApiClient([
             'token' => 'foobar'
         ]);
         $guzzle = $client->getGuzzleClient();

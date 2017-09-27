@@ -6,7 +6,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace Orion\Component\Client;
+namespace Orion\Component\Client\Entity;
 
 interface EntityInterface
 {

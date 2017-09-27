@@ -8,7 +8,7 @@
  * Author: Maxim Falaleev <max@studio107.ru>
  */
 
-namespace Orion\Component\Client;
+namespace Orion\Component\Client\Entity;
 
 class Project extends AbstractApiEntity
 {
@@ -21,17 +21,9 @@ class Project extends AbstractApiEntity
      */
     protected $managerId;
     /**
-     * @var string
+     * @var int|string
      */
-    protected $description;
-
-    /**
-     * @return string
-     */
-    public function getEndpoint()
-    {
-        return 'project';
-    }
+    protected $leadId;
 
     /**
      * @return string
@@ -66,18 +58,18 @@ class Project extends AbstractApiEntity
     }
 
     /**
-     * @return string
+     * @return int|string
      */
-    public function getDescription()
+    public function getLeadId()
     {
-        return $this->description;
+        return $this->leadId;
     }
 
     /**
-     * @param string $description
+     * @param int|string $leadId
      */
-    public function setDescription($description)
+    public function setLeadId($leadId)
     {
-        $this->description = $description;
+        $this->leadId = $leadId;
     }
 }

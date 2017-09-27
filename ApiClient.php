@@ -8,12 +8,12 @@
 
 namespace Orion\Component\Client;
 
-use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7\Response;
+use Orion\Component\Client\Entity\EntityInterface;
 
-class Client
+class ApiClient
 {
     /**
      * @var string

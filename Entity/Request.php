@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Orion\Component\Client;
+namespace Orion\Component\Client\Entity;
 
 class Request extends AbstractApiEntity
 {
@@ -28,14 +28,6 @@ class Request extends AbstractApiEntity
      * @var string|int
      */
     protected $requestTemplateId;
-
-    /**
-     * @return string
-     */
-    public function getEndpoint()
-    {
-        return 'request';
-    }
 
     /**
      * @return array|string

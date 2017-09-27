@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Orion\Component\Client;
+namespace Orion\Component\Client\Entity;
 
 class Lead extends AbstractApiEntity
 {
@@ -25,33 +25,21 @@ class Lead extends AbstractApiEntity
      */
     protected $email;
     /**
-     * @var int|string
+     * @var string
      */
     protected $contact;
     /**
      * @var int|string
      */
-    protected $contactId;
-    /**
-     * @var int|string
-     */
     protected $price;
     /**
-     * @var int|string
+     * @var int|bool
      */
     protected $isDone;
     /**
-     * @var int|string
+     * @var int|bool
      */
-    protected $clientId;
-    /**
-     * @var int|string
-     */
-    protected $requisiteId;
-    /**
-     * @var int|string
-     */
-    protected $pipelineStepId;
+    protected $isClosed;
     /**
      * @var string
      */
@@ -59,15 +47,15 @@ class Lead extends AbstractApiEntity
     /**
      * @var int|string
      */
-    protected $requestId;
-
+    protected $managerId;
     /**
-     * @return string
+     * @var int|string
      */
-    public function getEndpoint()
-    {
-        return 'lead';
-    }
+    protected $requestId;
+    /**
+     * @var int|string
+     */
+    protected $pipelineStepId;
 
     /**
      * @return int|string
@@ -118,35 +106,19 @@ class Lead extends AbstractApiEntity
     }
 
     /**
-     * @return int|string
+     * @return string
      */
-    public function getContact()
+    public function getContact(): string
     {
         return $this->contact;
     }
 
     /**
-     * @param int|string $contact
+     * @param string $contact
      */
-    public function setContact($contact)
+    public function setContact(string $contact)
     {
         $this->contact = $contact;
-    }
-
-    /**
-     * @return int|string
-     */
-    public function getContactId()
-    {
-        return $this->contactId;
-    }
-
-    /**
-     * @param int|string $contactId
-     */
-    public function setContactId($contactId)
-    {
-        $this->contactId = $contactId;
     }
 
     /**
@@ -166,7 +138,7 @@ class Lead extends AbstractApiEntity
     }
 
     /**
-     * @return int|string
+     * @return bool|int
      */
     public function getIsDone()
     {
@@ -174,7 +146,7 @@ class Lead extends AbstractApiEntity
     }
 
     /**
-     * @param int|string $isDone
+     * @param bool|int $isDone
      */
     public function setIsDone($isDone)
     {
@@ -182,57 +154,25 @@ class Lead extends AbstractApiEntity
     }
 
     /**
-     * @return int|string
+     * @return bool|int
      */
-    public function getClientId()
+    public function getIsClosed()
     {
-        return $this->clientId;
+        return $this->isClosed;
     }
 
     /**
-     * @param int|string $clientId
+     * @param bool|int $isClosed
      */
-    public function setClientId($clientId)
+    public function setIsClosed($isClosed)
     {
-        $this->clientId = $clientId;
-    }
-
-    /**
-     * @return int|string
-     */
-    public function getRequisiteId()
-    {
-        return $this->requisiteId;
-    }
-
-    /**
-     * @param int|string $requisiteId
-     */
-    public function setRequisiteId($requisiteId)
-    {
-        $this->requisiteId = $requisiteId;
-    }
-
-    /**
-     * @return int|string
-     */
-    public function getPipelineStepId()
-    {
-        return $this->pipelineStepId;
-    }
-
-    /**
-     * @param int|string $pipelineStepId
-     */
-    public function setPipelineStepId($pipelineStepId)
-    {
-        $this->pipelineStepId = $pipelineStepId;
+        $this->isClosed = $isClosed;
     }
 
     /**
      * @return string
      */
-    public function getSource()
+    public function getSource(): string
     {
         return $this->source;
     }
@@ -240,9 +180,25 @@ class Lead extends AbstractApiEntity
     /**
      * @param string $source
      */
-    public function setSource($source)
+    public function setSource(string $source)
     {
         $this->source = $source;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getManagerId()
+    {
+        return $this->managerId;
+    }
+
+    /**
+     * @param int|string $managerId
+     */
+    public function setManagerId($managerId)
+    {
+        $this->managerId = $managerId;
     }
 
     /**
@@ -259,5 +215,21 @@ class Lead extends AbstractApiEntity
     public function setRequestId($requestId)
     {
         $this->requestId = $requestId;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getPipelineStepId()
+    {
+        return $this->pipelineStepId;
+    }
+
+    /**
+     * @param int|string $pipelineStepId
+     */
+    public function setPipelineStepId($pipelineStepId)
+    {
+        $this->pipelineStepId = $pipelineStepId;
     }
 }

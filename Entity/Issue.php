@@ -8,15 +8,9 @@
  * Author: Maxim Falaleev <max@studio107.ru>
  */
 
-namespace Orion\Component\Client;
+namespace Orion\Component\Client\Entity;
 
 class Issue extends AbstractApiEntity
 {
-    /**
-     * @return string
-     */
-    public function getEndpoint()
-    {
-        return 'issue';
-    }
+
 }
