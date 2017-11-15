@@ -81,4 +81,12 @@ abstract class AbstractApiEntity implements EntityInterface
 
         return $this->toSnakeCase($reflect->getShortName());
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getEndpoint();
+    }
 }
