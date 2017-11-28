@@ -11,14 +11,19 @@ namespace Orion\Component\Client;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
+use Orion\Component\Client\Api\ClientApi;
 use Orion\Component\Client\Api\EstateApi;
+use Orion\Component\Client\Api\LeadApi;
+use Orion\Component\Client\Api\RequestApi;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Factory
  *
  * @property Api\EstateApi $estate
+ * @property Api\LeadApi $lead
+ * @property Api\ClientApi $client
+ * @property Api\RequestApi $request
  */
 class Factory
 {
@@ -65,7 +70,10 @@ class Factory
     protected function getApiList()
     {
         return [
-            'estate' => EstateApi::class
+            'estate' => EstateApi::class,
+            'lead' => LeadApi::class,
+            'client' => ClientApi::class,
+            'request' => RequestApi::class,
         ];
     }
 
@@ -83,10 +91,6 @@ class Factory
      */
     public function send(RequestInterface $request)
     {
-        if (false === $request->hasHeader('Content-Type')) {
-            $request = $request->withHeader('Content-Type', 'application/json');
-        }
-
         try {
             $response = $this->getGuzzleClient()->send($this->signRequest($request));
         } catch (ServerException $e) {
@@ -95,7 +99,12 @@ class Factory
             $response = $e->getResponse();
         }
 
-        return \GuzzleHttp\json_decode((string)$response->getBody(), true);
+        if ($response === null) {
+            throw new \RuntimeException('Response is null');
+        }
+
+        $body = (string)$response->getBody();
+        return \GuzzleHttp\json_decode($body, true);
     }
 
     /**

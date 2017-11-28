@@ -40,9 +40,7 @@ abstract class AbstractApi
      */
     public function buildUrl()
     {
-        return call_user_func_array('sprintf', array_merge([
-            '%s/%s', $this->getEndpoint()
-        ], func_get_args()));
+        return sprintf('%s/%s', $this->getEndpoint(), implode('/', func_get_args()));
     }
 
     /**
@@ -52,5 +50,14 @@ abstract class AbstractApi
     protected function send(RequestInterface $request)
     {
         return $this->factory->send($request);
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @return array|object
+     */
+    protected function sendJson(RequestInterface $request)
+    {
+        return $this->send($request->withHeader('Content-Type', 'application/json'));
     }
 }

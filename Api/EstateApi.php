@@ -10,6 +10,7 @@ namespace Orion\Component\Client\Api;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 
 class EstateApi extends AbstractApi
 {
@@ -20,7 +21,7 @@ class EstateApi extends AbstractApi
     public function create(array $data)
     {
         $uri = $this->buildUrl('estate');
-        return $this->send(new Request('POST', $uri, [], \GuzzleHttp\json_encode($data)));
+        return $this->sendJson(new Request('POST', $uri, [], \GuzzleHttp\json_encode($data)));
     }
 
     /**
@@ -30,7 +31,7 @@ class EstateApi extends AbstractApi
     public function get($id)
     {
         $uri = $this->buildUrl('estate', $id);
-        return $this->send(new Request('GET', $uri));
+        return $this->sendJson(new Request('GET', $uri));
     }
 
     /**
@@ -39,7 +40,7 @@ class EstateApi extends AbstractApi
     public function list()
     {
         $uri = $this->buildUrl('estate');
-        return $this->send(new Request('GET', $uri));
+        return $this->sendJson(new Request('GET', $uri));
     }
 
     /**
@@ -50,7 +51,7 @@ class EstateApi extends AbstractApi
     public function update($id, array $data)
     {
         $uri = $this->buildUrl('estate', $id);
-        return $this->send(new Request('PUT', $uri, [], \GuzzleHttp\json_encode($data)));
+        return $this->sendJson(new Request('PUT', $uri, [], \GuzzleHttp\json_encode($data)));
     }
 
     /**
@@ -60,7 +61,7 @@ class EstateApi extends AbstractApi
     public function delete($id)
     {
         $uri = $this->buildUrl('estate', $id);
-        return $this->send(new Request('DELETE', $uri));
+        return $this->sendJson(new Request('DELETE', $uri));
     }
 
     /**
@@ -74,13 +75,15 @@ class EstateApi extends AbstractApi
         $uri = $this->buildUrl('estate_image', $id);
         $request = new Request('POST', $uri);
 
-        return $this->send($request->withBody(new MultipartStream([
+        $multipart = new MultipartStream([
             [
                 'name' => 'image',
                 'contents' => $contents,
                 'filename' => $fileName,
             ]
-        ])));
+        ]);
+
+        return $this->send($request->withBody($multipart));
     }
 
     /**
@@ -91,6 +94,6 @@ class EstateApi extends AbstractApi
     public function deleteImage($id, $imageId)
     {
         $uri = $this->buildUrl('estate_image', $id, $imageId);
-        return $this->send(new Request('DELETE', $uri));
+        return $this->sendJson(new Request('DELETE', $uri));
     }
 }
